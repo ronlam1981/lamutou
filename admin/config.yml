@@ -1,0 +1,32 @@
+backend:
+  name: github
+  repo: ronlam1981/lamutou-content
+  branch: main
+  squash_merges: true
+
+publish_mode: editorial_workflow
+site_url: https://lamutou.com/
+display_url: https://lamutou.com/
+media_folder: media
+public_folder: /media
+
+collections:
+  - name: articles
+    label: 文章
+    label_singular: 文章
+    folder: content/articles
+    create: true
+    delete: false
+    extension: json
+    format: json
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { name: title, label: 標題, widget: string }
+      - { name: date, label: 原文／文章日期, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { name: category, label: 分類, widget: string }
+      - { name: source, label: 來源, widget: string, required: false }
+      - { name: published, label: 已獲批准公開, widget: boolean, default: false, hint: "只有本人明確確認發布後才可開啟；開啟本欄本身不會自動修改公開網站。" }
+      - { name: image, label: 圖片, widget: image, required: false }
+      - { name: imageAlt, label: 圖片說明, widget: string, required: false }
+      - { name: body, label: 正文, widget: text, hint: "以純文字輸入；發布程序會把文字安全轉義。" }
